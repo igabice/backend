@@ -1,4 +1,4 @@
-
+module.exports = app => {
     const items = require("../controllers/item.controller.js");
   
     const router = require("express").Router();
@@ -24,5 +24,5 @@
     // Create a new Item
     router.delete("/", items.deleteAll);
   
-export default router;
-  
+    app.use("/api/items", router);
+  };

@@ -38,10 +38,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Items from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
 
-  Item.find(condition)
+  Item.find()
     .then(data => {
       res.send(data);
     })

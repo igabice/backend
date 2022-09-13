@@ -52,7 +52,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const user_id = req.query.user_id;
 
-  Order.findAll()
+  Order.find()
     .then((data) => {
       res.send(data);
     })
