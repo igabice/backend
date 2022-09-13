@@ -2,8 +2,9 @@ module.exports = (mongoose) => {
     const schema = mongoose.Schema(
       {
         item_id: String,
-        user_id: String,
+        item_name: String,
         cost: Number,
+        total_cost: Number,
         quantity: String,
       },
       { timestamps: true }

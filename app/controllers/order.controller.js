@@ -6,22 +6,23 @@ const items = require("../controllers/item.controller.js");
 // Create and Save a new Order
 exports.create = (req, res) => {
 
-    const user_id = req.body.user_id;
+    const item_id = req.body.item_id;
   // Validate request
-  if (!req.body.order_id) {
-    res.status(400).send({ message: "order_id can not be empty!" });
+  if (!req.body.item_id) {
+    res.status(400).send({ message: "item can not be empty!" });
     return;
   }
 
-  Item.findById(user_id)
+  Item.findById(item_id)
     .then((data) => {
         const updateQuantity = data.quantity - req.body.quantity;
-        Item.findByIdAndUpdate(id, { quantity: updateQuantity }, { useFindAndModify: false });
+        Item.findByIdAndUpdate(data.id, { quantity: updateQuantity }, { useFindAndModify: false });
 
         const order = new Order({
-            order_id: req.body.order_id,
-            user_id,
+          item_id: req.body.item_id,
+            item_name: data.title,
             cost: req.body.cost,
+            total_cost: req.body.total_cost,
             quantity: req.body.quantity,
           });
         
