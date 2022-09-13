@@ -3,6 +3,9 @@ const cors = require("cors");
 
 const app = express();
 
+const itemRouter = require("./app/routes/item.routes");
+const orderRouter = require("./app/routes/order.routes");
+
 app.use(cors());
 
 // parse requests of content-type - application/json
@@ -31,8 +34,11 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to node application." });
 });
 
-require("./app/routes/item.routes")(app);
-require("./app/routes/orders.routes")(app);
+
+require("./app/routes/orders.routes")
+
+app.use("/api/items", itemRouter);
+app.use("/api/orders", orderRouter);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
